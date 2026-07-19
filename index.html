@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Media Player</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <div class="player-pane">
+      <video id="media" controls></video>
+      <div class="now-playing" id="nowPlaying">재생할 항목을 선택하세요</div>
+      <div class="transport">
+        <button id="prevBtn">⏮ 이전</button>
+        <button id="playBtn">▶ 재생</button>
+        <button id="nextBtn">다음 ⏭</button>
+      </div>
+    </div>
+    <div class="playlist-pane">
+      <div class="playlist-header">
+        <span>재생목록</span>
+        <div>
+          <button id="addBtn">+ 파일 추가</button>
+          <button id="clearBtn">전체 삭제</button>
+        </div>
+      </div>
+      <ul id="playlist"></ul>
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
