@@ -17,6 +17,7 @@
   "build": {
     "appId": "com.mediaplayer.app",
     "productName": "Media Player",
+    "publish": null,
     "files": [
       "main.js",
       "preload.js",
