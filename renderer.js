@@ -63,13 +63,42 @@ function removeItem(index) {
   render();
 }
 
-addBtn.addEventListener('click', async () => {
-  const files = await window.api.selectFiles();
-  if (files.length === 0) return;
+function addFiles(paths) {
+  if (paths.length === 0) return;
   const wasEmpty = playlist.length === 0;
-  playlist.push(...files);
+  playlist.push(...paths);
   render();
   if (wasEmpty) play(0);
+}
+
+addBtn.addEventListener('click', async () => {
+  addFiles(await window.api.selectFiles());
+});
+
+const playlistPane = document.querySelector('.playlist-pane');
+
+// Electron navigates to a dropped file by default; block that everywhere.
+document.addEventListener('dragover', (e) => e.preventDefault());
+document.addEventListener('drop', (e) => e.preventDefault());
+
+playlistPane.addEventListener('dragenter', (e) => {
+  e.preventDefault();
+  playlistPane.classList.add('drag-over');
+});
+
+playlistPane.addEventListener('dragover', (e) => {
+  e.preventDefault();
+});
+
+playlistPane.addEventListener('dragleave', (e) => {
+  if (e.target === playlistPane) playlistPane.classList.remove('drag-over');
+});
+
+playlistPane.addEventListener('drop', (e) => {
+  e.preventDefault();
+  playlistPane.classList.remove('drag-over');
+  const paths = [...e.dataTransfer.files].map((f) => window.api.getPathForFile(f));
+  addFiles(paths);
 });
 
 clearBtn.addEventListener('click', () => {
