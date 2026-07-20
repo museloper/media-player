@@ -21,24 +21,12 @@ body {
   min-width: 0;
 }
 
-.player-pane.audio-mode {
-  justify-content: center;
-}
-
 #media {
   width: 100%;
   flex: 1;
   min-height: 0;
   background: #000;
   border-radius: 8px;
-}
-
-/* Audio files have no video track, so collapse the video area down to
-   just the control bar instead of showing an empty black rectangle. */
-.player-pane.audio-mode #media {
-  flex: none;
-  height: 54px;
-  background: transparent;
 }
 
 .now-playing {
