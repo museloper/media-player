@@ -67,7 +67,7 @@ body {
 
 .menu {
   position: absolute;
-  top: calc(100% + 4px);
+  bottom: calc(100% + 4px);
   right: 0;
   min-width: 140px;
   background: #2a2b2e;
@@ -79,7 +79,7 @@ body {
 
 .submenu {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: calc(100% + 4px);
   min-width: 120px;
   background: #2a2b2e;
