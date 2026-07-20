@@ -29,13 +29,145 @@ body {
   border-radius: 8px;
 }
 
-.now-playing {
+.now-playing-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   margin: 12px 0;
+}
+
+.now-playing {
   font-size: 14px;
   color: #aaa;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.options-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.options-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #3a3b3e;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.options-btn:hover {
+  background: #4a4b4e;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 140px;
+  background: #2a2b2e;
+  border: 1px solid #3a3b3e;
+  border-radius: 8px;
+  padding: 4px;
+  z-index: 10;
+}
+
+.submenu {
+  position: absolute;
+  top: 0;
+  right: calc(100% + 4px);
+  min-width: 120px;
+  background: #2a2b2e;
+  border: 1px solid #3a3b3e;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  text-align: left;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background: #3a3b3e;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: #2a2b2e;
+  border-radius: 10px;
+  padding: 20px;
+  width: 260px;
+}
+
+.modal-box h3 {
+  margin: 0 0 14px;
+  font-size: 15px;
+}
+
+.modal-box input {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #3a3b3e;
+  color: #fff;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.modal-actions button {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #3a3b3e;
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.modal-actions button:hover {
+  background: #4a4b4e;
+}
+
+.modal-actions #speedConfirmBtn {
+  background: #4c6ea3;
+}
+
+.modal-actions #speedConfirmBtn:hover {
+  background: #5a7fbf;
 }
 
 .transport {
@@ -56,25 +188,6 @@ body {
 
 .transport button:hover {
   background: #4a4b4e;
-}
-
-.speed-control {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0 10px;
-  font-size: 13px;
-  color: #ccc;
-}
-
-.speed-control input {
-  width: 60px;
-  padding: 6px 8px;
-  border: none;
-  border-radius: 6px;
-  background: #3a3b3e;
-  color: #fff;
-  font-size: 14px;
 }
 
 .playlist-pane {

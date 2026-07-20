@@ -6,10 +6,19 @@ const clearBtn = document.getElementById('clearBtn');
 const playBtn = document.getElementById('playBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
-const speedInput = document.getElementById('speedInput');
+const optionsBtn = document.getElementById('optionsBtn');
+const optionsMenu = document.getElementById('optionsMenu');
+const speedMenuBtn = document.getElementById('speedMenuBtn');
+const speedSubmenu = document.getElementById('speedSubmenu');
+const customSpeedBtn = document.getElementById('customSpeedBtn');
+const speedModal = document.getElementById('speedModal');
+const customSpeedInput = document.getElementById('customSpeedInput');
+const speedCancelBtn = document.getElementById('speedCancelBtn');
+const speedConfirmBtn = document.getElementById('speedConfirmBtn');
 
 let playlist = [];
 let currentIndex = -1;
+let playbackRate = 1;
 
 function fileName(filePath) {
   return filePath.split(/[\\/]/).pop();
@@ -45,7 +54,7 @@ function play(index) {
   if (index < 0 || index >= playlist.length) return;
   currentIndex = index;
   media.src = 'file://' + playlist[index];
-  media.playbackRate = parseFloat(speedInput.value) || 1;
+  media.playbackRate = playbackRate;
   media.play();
   nowPlaying.textContent = fileName(playlist[index]);
   render();
@@ -125,11 +134,54 @@ playBtn.addEventListener('click', () => {
 prevBtn.addEventListener('click', () => play(currentIndex - 1));
 nextBtn.addEventListener('click', () => play(currentIndex + 1));
 
-speedInput.addEventListener('change', () => {
-  const rate = parseFloat(speedInput.value);
+function closeMenus() {
+  optionsMenu.classList.add('hidden');
+  speedSubmenu.classList.add('hidden');
+}
+
+optionsBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const willOpen = optionsMenu.classList.contains('hidden');
+  closeMenus();
+  if (willOpen) optionsMenu.classList.remove('hidden');
+});
+
+speedMenuBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  speedSubmenu.classList.toggle('hidden');
+});
+
+speedSubmenu.querySelectorAll('[data-rate]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    playbackRate = parseFloat(btn.dataset.rate);
+    media.playbackRate = playbackRate;
+    closeMenus();
+  });
+});
+
+customSpeedBtn.addEventListener('click', () => {
+  customSpeedInput.value = playbackRate;
+  closeMenus();
+  speedModal.classList.remove('hidden');
+});
+
+document.addEventListener('click', closeMenus);
+
+speedCancelBtn.addEventListener('click', () => {
+  speedModal.classList.add('hidden');
+});
+
+speedModal.addEventListener('click', (e) => {
+  if (e.target === speedModal) speedModal.classList.add('hidden');
+});
+
+speedConfirmBtn.addEventListener('click', () => {
+  const rate = parseFloat(customSpeedInput.value);
   if (!isNaN(rate) && rate > 0) {
-    media.playbackRate = rate;
+    playbackRate = rate;
+    media.playbackRate = playbackRate;
   }
+  speedModal.classList.add('hidden');
 });
 
 media.addEventListener('ended', () => {
