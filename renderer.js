@@ -1,4 +1,5 @@
 const media = document.getElementById('media');
+const playerPane = document.querySelector('.player-pane');
 const nowPlaying = document.getElementById('nowPlaying');
 const playlistEl = document.getElementById('playlist');
 const addBtn = document.getElementById('addBtn');
@@ -12,6 +13,13 @@ let currentIndex = -1;
 
 function fileName(filePath) {
   return filePath.split(/[\\/]/).pop();
+}
+
+const AUDIO_EXTENSIONS = new Set(['mp3', 'wav', 'ogg', 'flac', 'm4a', 'aac']);
+
+function isAudioFile(filePath) {
+  const ext = filePath.split('.').pop().toLowerCase();
+  return AUDIO_EXTENSIONS.has(ext);
 }
 
 function render() {
@@ -46,6 +54,7 @@ function play(index) {
   media.src = 'file://' + playlist[index];
   media.play();
   nowPlaying.textContent = fileName(playlist[index]);
+  playerPane.classList.toggle('audio-mode', isAudioFile(playlist[index]));
   render();
 }
 
@@ -57,6 +66,7 @@ function removeItem(index) {
     media.load();
     currentIndex = -1;
     nowPlaying.textContent = '재생할 항목을 선택하세요';
+    playerPane.classList.remove('audio-mode');
   } else if (index < currentIndex) {
     currentIndex -= 1;
   }
@@ -108,6 +118,7 @@ clearBtn.addEventListener('click', () => {
   playlist = [];
   currentIndex = -1;
   nowPlaying.textContent = '재생할 항목을 선택하세요';
+  playerPane.classList.remove('audio-mode');
   render();
 });
 
