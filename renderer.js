@@ -24,7 +24,7 @@ function render() {
     name.className = 'name';
     name.textContent = fileName(filePath);
     name.title = filePath;
-    name.addEventListener('click', () => play(i));
+    name.addEventListener('dblclick', () => play(i));
 
     const remove = document.createElement('span');
     remove.className = 'remove';
