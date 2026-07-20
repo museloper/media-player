@@ -44,15 +44,18 @@
         </div>
       </div>
     </div>
-    <div class="playlist-pane">
-      <div class="playlist-header">
-        <span>재생목록</span>
-        <div>
-          <button id="addBtn">+ 파일 추가</button>
-          <button id="clearBtn">전체 삭제</button>
+    <div class="playlist-pane" id="playlistPane">
+      <button id="playlistToggleBtn" class="playlist-toggle" title="재생목록 접기/펼치기">▸</button>
+      <div class="playlist-content">
+        <div class="playlist-header">
+          <span>재생목록</span>
+          <div>
+            <button id="addBtn">+ 파일 추가</button>
+            <button id="clearBtn">전체 삭제</button>
+          </div>
         </div>
+        <ul id="playlist"></ul>
       </div>
-      <ul id="playlist"></ul>
     </div>
   </div>
   <script src="renderer.js"></script>

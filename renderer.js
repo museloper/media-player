@@ -87,6 +87,12 @@ addBtn.addEventListener('click', async () => {
 });
 
 const playlistPane = document.querySelector('.playlist-pane');
+const playlistToggleBtn = document.getElementById('playlistToggleBtn');
+
+playlistToggleBtn.addEventListener('click', () => {
+  const collapsed = playlistPane.classList.toggle('collapsed');
+  playlistToggleBtn.textContent = collapsed ? '◂' : '▸';
+});
 
 // Electron navigates to a dropped file by default; block that everywhere.
 document.addEventListener('dragover', (e) => e.preventDefault());
