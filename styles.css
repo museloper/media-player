@@ -32,18 +32,25 @@ body {
 .now-playing-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
   margin: 12px 0;
 }
 
 .now-playing {
+  flex: 1;
   font-size: 14px;
   color: #aaa;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
+}
+
+.controls-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .options-wrap {

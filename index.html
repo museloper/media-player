@@ -11,19 +11,21 @@
       <video id="media" controls></video>
       <div class="now-playing-row">
         <div class="now-playing" id="nowPlaying">재생할 항목을 선택하세요</div>
-        <button id="playlistToggleBtn" class="options-btn">▸ 재생목록</button>
-        <div class="options-wrap">
-          <button id="optionsBtn" class="options-btn">⚙ 옵션</button>
-          <div id="optionsMenu" class="menu hidden">
-            <button class="menu-item has-submenu" id="speedMenuBtn">속도조절 ▸</button>
-            <div id="speedSubmenu" class="submenu hidden">
-              <button class="menu-item" data-rate="0.5">0.5x</button>
-              <button class="menu-item" data-rate="0.75">0.75x</button>
-              <button class="menu-item" data-rate="1">1x (기본)</button>
-              <button class="menu-item" data-rate="1.25">1.25x</button>
-              <button class="menu-item" data-rate="1.5">1.5x</button>
-              <button class="menu-item" data-rate="2">2x</button>
-              <button class="menu-item" id="customSpeedBtn">커스텀...</button>
+        <div class="controls-group">
+          <button id="playlistToggleBtn" class="options-btn">▸ 재생목록</button>
+          <div class="options-wrap">
+            <button id="optionsBtn" class="options-btn">⚙ 옵션</button>
+            <div id="optionsMenu" class="menu hidden">
+              <button class="menu-item has-submenu" id="speedMenuBtn">속도조절 ▸</button>
+              <div id="speedSubmenu" class="submenu hidden">
+                <button class="menu-item" data-rate="0.5">0.5x</button>
+                <button class="menu-item" data-rate="0.75">0.75x</button>
+                <button class="menu-item" data-rate="1">1x (기본)</button>
+                <button class="menu-item" data-rate="1.25">1.25x</button>
+                <button class="menu-item" data-rate="1.5">1.5x</button>
+                <button class="menu-item" data-rate="2">2x</button>
+                <button class="menu-item" id="customSpeedBtn">커스텀...</button>
+              </div>
             </div>
           </div>
         </div>
