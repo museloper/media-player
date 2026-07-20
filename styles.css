@@ -58,6 +58,25 @@ body {
   background: #4a4b4e;
 }
 
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  font-size: 13px;
+  color: #ccc;
+}
+
+.speed-control input {
+  width: 60px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: #3a3b3e;
+  color: #fff;
+  font-size: 14px;
+}
+
 .playlist-pane {
   width: 320px;
   border-left: 1px solid #333;

@@ -6,6 +6,7 @@ const clearBtn = document.getElementById('clearBtn');
 const playBtn = document.getElementById('playBtn');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
+const speedInput = document.getElementById('speedInput');
 
 let playlist = [];
 let currentIndex = -1;
@@ -44,6 +45,7 @@ function play(index) {
   if (index < 0 || index >= playlist.length) return;
   currentIndex = index;
   media.src = 'file://' + playlist[index];
+  media.playbackRate = parseFloat(speedInput.value) || 1;
   media.play();
   nowPlaying.textContent = fileName(playlist[index]);
   render();
@@ -122,6 +124,13 @@ playBtn.addEventListener('click', () => {
 
 prevBtn.addEventListener('click', () => play(currentIndex - 1));
 nextBtn.addEventListener('click', () => play(currentIndex + 1));
+
+speedInput.addEventListener('change', () => {
+  const rate = parseFloat(speedInput.value);
+  if (!isNaN(rate) && rate > 0) {
+    media.playbackRate = rate;
+  }
+});
 
 media.addEventListener('ended', () => {
   if (currentIndex + 1 < playlist.length) play(currentIndex + 1);
