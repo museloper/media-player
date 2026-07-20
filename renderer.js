@@ -91,7 +91,7 @@ const playlistToggleBtn = document.getElementById('playlistToggleBtn');
 
 playlistToggleBtn.addEventListener('click', () => {
   const collapsed = playlistPane.classList.toggle('collapsed');
-  playlistToggleBtn.textContent = collapsed ? '◂' : '▸';
+  playlistToggleBtn.textContent = collapsed ? '◂ 재생목록' : '▸ 재생목록';
 });
 
 // Electron navigates to a dropped file by default; block that everywhere.
