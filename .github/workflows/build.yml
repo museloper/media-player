@@ -16,6 +16,10 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      # The release always publishes to the same "latest" tag, so the
+      # version number must go up on every build or electron-updater
+      # (Windows side) can never tell a new build apart from the old one.
+      - run: npm pkg set version=1.0.${{ github.run_number }}
       - run: npm run dist:mac
       - uses: actions/upload-artifact@v4
         with:
@@ -30,11 +34,15 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
+      - run: npm pkg set version=1.0.${{ github.run_number }}
       - run: npm run dist:win
       - uses: actions/upload-artifact@v4
         with:
           name: win-exe
-          path: dist/*.exe
+          path: |
+            dist/*.exe
+            dist/*.exe.blockmap
+            dist/latest.yml
 
   release:
     needs: [build-mac, build-win]
@@ -51,3 +59,5 @@ jobs:
           files: |
             artifacts/mac-dmg/*.dmg
             artifacts/win-exe/*.exe
+            artifacts/win-exe/*.exe.blockmap
+            artifacts/win-exe/latest.yml

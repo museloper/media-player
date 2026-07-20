@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
+const { autoUpdater } = require('electron-updater');
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -17,6 +18,12 @@ function createWindow() {
 
 app.whenReady().then(() => {
   createWindow();
+
+  // Only Windows builds are code-signed well enough for Squirrel/NSIS
+  // silent updates to be reliable; macOS stays manual-download for now.
+  if (process.platform === 'win32' && app.isPackaged) {
+    autoUpdater.checkForUpdatesAndNotify();
+  }
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
